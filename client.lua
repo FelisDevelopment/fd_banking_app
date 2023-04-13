@@ -14,7 +14,7 @@ CreateThread(function ()
         developer = "Felis Development",
         defaultApp = true,
         size = 59812,
-        icon = "nui://" .. GetCurrentResourceName() .. "/web/public/bank_app.png",
+        icon = "nui://" .. GetCurrentResourceName() .. "/web/dist/bank_app.png",
         ui = GetCurrentResourceName() .. "/web/dist/index.html",
     })
 
