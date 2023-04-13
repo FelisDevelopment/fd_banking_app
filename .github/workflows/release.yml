@@ -66,7 +66,7 @@ jobs:
         run: |
           mkdir -p ./temp/fd_banking_app
           cp ./{README.md,fxmanifest.lua,client.lua} ./temp/fd_banking_app
-          cp -r ./web/dist ./temp/fd_banking_app/web/
+          cp -r ./web/dist ./temp/fd_banking_app/web/dist
           rm -rf ./web/node_modules && rm -rf ./web/package-lock.json && rm -rf ./web/pnpm-lock.yaml && rm -rf ./web/.vscode
           cd ./temp && zip -r ../fd_banking_app.zip ./fd_banking_app
       - name: Create Release
