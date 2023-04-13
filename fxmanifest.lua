@@ -5,7 +5,7 @@ game 'gta5'
 
 description "Advanced Banking System - LB Phone integration"
 author "Felis Development"
-version      '0.1.1'
+version      '0.1.2'
 repository 'https://github.com/felisDevelopment/fd_banking_app'
 
 dependencies {
