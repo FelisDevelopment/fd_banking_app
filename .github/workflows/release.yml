@@ -65,6 +65,7 @@ jobs:
       - name: Bundle files
         run: |
           mkdir -p ./temp/fd_banking_app
+          mkdir -p ./temp/fd_banking_app/web/dist
           cp ./{README.md,fxmanifest.lua,client.lua} ./temp/fd_banking_app
           cp -r ./web/dist ./temp/fd_banking_app/web
           rm -rf ./web/node_modules && rm -rf ./web/package-lock.json && rm -rf ./web/pnpm-lock.yaml && rm -rf ./web/.vscode
