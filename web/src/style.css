@@ -24,7 +24,7 @@
 
 html,
 body {
-  @apply w-full h-full m-0 p-0 box-border invisible;
+  @apply w-full h-full m-0 p-0 box-border invisible text-white;
 }
 
 #app {
