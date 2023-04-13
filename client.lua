@@ -40,3 +40,10 @@ RegisterNetEvent("fd_banking:client:fetchAccount", function(account)
         }
     })
 end)
+
+RegisterNetEvent("lb-phone:settingsUpdated", function(settings)
+    SendNUIMessage({
+        type = "settingsUpdated",
+        settings = settings
+    })
+end)

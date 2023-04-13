@@ -18,7 +18,6 @@ const tabs = {
 };
 
 const changeTab = (newTab: Tab) => {
-  console.log(newTab);
   tab.value = newTab;
 };
 
