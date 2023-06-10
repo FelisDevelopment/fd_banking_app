@@ -15,7 +15,7 @@ const props = defineProps<{
 }>();
 
 const accountData = ref<Account | null>(null);
-const transactions = ref<Transaction[] | null>(null);
+const transactions = ref<Transaction[] | null>([]);
 const page = ref<number>(1);
 const isFetching = ref<boolean>(false);
 const timeZone = ref<string>(Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -31,7 +31,7 @@ const fetchAccount = async (id: number, override?: boolean) => {
 
     // Reset data
     accountData.value = null;
-    transactions.value = null;
+    transactions.value = [];
     page.value = 1;
 
     try {
@@ -243,6 +243,7 @@ onMounted(() => {
     </div>
     <div
       class="relative flex flex-col flex-1 w-full bg-[#2c2e33] rounded-t-3xl p-3 border-[#373A40] border-t overflow-y-auto overflow-x-hidden gap-3 pb-32"
+      v-if="accountData"
     >
       <ul role="list" class="space-y-2">
         <li v-for="transaction in transactions" :key="transaction.id">

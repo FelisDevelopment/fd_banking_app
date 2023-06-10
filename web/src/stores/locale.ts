@@ -9,9 +9,11 @@ export const useLocaleStore = defineStore("locale", () => {
     if (key === "currency") {
       return strings.value[key] ?? "USD";
     }
+
     if (key === "currency_language") {
       return strings.value[key] ?? "en-US";
     }
+
     return strings.value[key] || key;
   });
 
