@@ -3,7 +3,7 @@ import { ref } from "vue";
 import { z as zod } from "zod";
 import { useField, useForm } from "vee-validate";
 import { toFormValidator } from "@vee-validate/zod";
-import { Account, fetched } from "@/utils";
+import { type Account, fetched } from "@/utils";
 import { useLocaleStore } from "@/stores/locale";
 
 const locale = useLocaleStore();

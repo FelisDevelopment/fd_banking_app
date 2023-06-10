@@ -22,6 +22,22 @@
   background: #555;
 }
 
+:root {
+  --background-primary: #25262b;
+
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+
+  @apply antialiased;
+}
+
+[data-theme="dark"] {
+  --background-primary: #25262b;
+
+  --text-primary: #ffffff;
+  --text-secondary: #ffffff;
+}
+
 html,
 body {
   @apply w-full h-full m-0 p-0 box-border invisible;

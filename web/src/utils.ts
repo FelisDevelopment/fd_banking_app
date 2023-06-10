@@ -54,3 +54,6 @@ export interface Transaction {
   description: string;
   created_at: string;
 }
+
+// @ts-ignore
+export const devMode = !window?.["invokeNative"];

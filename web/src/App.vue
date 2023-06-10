@@ -11,6 +11,7 @@ type Tab = "accounts" | "invoices";
 
 const isLoading = ref(true);
 const tab = ref<Tab>("accounts");
+const theme = ref<string>("dark");
 
 const tabs = {
   accounts: AccountsComponent,
@@ -26,12 +27,19 @@ const currentTab = computed(() => tabs[tab.value]);
 onMounted(() => {
   locale.fetch();
 
-  const script = document.createElement("script");
+  setTimeout(() => {
+    const { getSettings, onSettingsChange } = window as any;
 
-  script.src = "https://cfx-nui-lb-phone/ui/components.js";
-  script.async = true;
+    if (typeof getSettings === "undefined") return;
 
-  document.body.appendChild(script);
+    getSettings().then((settings: any) => {
+      theme.value = settings.display.theme;
+    });
+
+    onSettingsChange((settings: any) => {
+      theme.value = settings.display.theme;
+    });
+  }, 1000);
 
   isLoading.value = false;
 });
@@ -42,7 +50,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-1 overflow-hidden">
+  <div class="flex flex-1 overflow-hidden" :data-theme="theme">
     <LoadingComponent v-if="isLoading" />
     <div
       class="relative flex flex-col flex-1 overflow-hidden bg-[#25262b] items-center subpixel-antialiased"

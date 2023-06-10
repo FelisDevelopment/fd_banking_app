@@ -126,6 +126,7 @@ const transactionsLoading = async ($state: any) => {
 
     page.value++;
   } catch (error) {
+    console.log(error);
     $state.error();
   }
 };
