@@ -79,7 +79,7 @@ onMounted(() => {
         </span>
       </div>
       <div
-        class="relative flex flex-col flex-1 w-full bg-[#2c2e33] rounded-t-3xl p-3 border-[#373A40] border-t overflow-y-auto overflow-x-hidden gap-3 pb-32"
+        class="relative flex flex-col flex-1 w-full bg-[#2c2e33] rounded-t-3xl p-3 overflow-y-auto overflow-x-hidden gap-3 pb-32"
       >
         <div
           class="flex flex-col rounded-2xl overflow-hidden flex-shrink-0 transform hover:-translate-y-1 transition duration-350 ease-linear"
