@@ -243,7 +243,7 @@ onMounted(() => {
       </div>
     </div>
     <div
-      class="relative flex flex-col flex-1 w-full bg-[#2c2e33] rounded-t-3xl p-3 border-[#373A40] border-t overflow-y-auto overflow-x-hidden gap-3 pb-32"
+      class="relative flex flex-col flex-1 w-full bg-[#2c2e33] rounded-t-3xl p-3 overflow-y-auto overflow-x-hidden gap-3 pb-32"
       v-if="accountData"
     >
       <ul role="list" class="space-y-2">
