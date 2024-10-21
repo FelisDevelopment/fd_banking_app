@@ -1,4 +1,6 @@
-CreateThread(function ()
+local userAccounts = {}
+
+CreateThread(function()
     while GetResourceState("lb-phone") ~= "started" do
         Wait(500)
     end
@@ -9,8 +11,8 @@ CreateThread(function ()
 
     local added, errorMessage = exports["lb-phone"]:AddCustomApp({
         identifier = "fd_banking",
-        name = "Bank",
-        description = "Banking in your phone",
+        name = "Bankas",
+        description = "El. Bankininkystė jūsų kišenėje",
         developer = "Felis Development",
         defaultApp = true,
         size = 59812,
@@ -24,6 +26,8 @@ CreateThread(function ()
 end)
 
 RegisterNetEvent('fd_banking:client:fetchAccounts', function(accounts)
+    userAccounts = accounts
+
     exports["lb-phone"]:SendCustomAppMessage("fd_banking", {
         action = 'bank:setAccounts',
         data = {
@@ -45,5 +49,39 @@ RegisterNetEvent("lb-phone:settingsUpdated", function(settings)
     SendNUIMessage({
         type = "settingsUpdated",
         settings = settings
+    })
+end)
+
+local function findAccount(account_id)
+    for _, account in pairs(userAccounts) do
+        if account.id == account_id then
+            return account
+        end
+    end
+
+    return nil
+end
+
+RegisterNetEvent('fd_advanced_banking:client:account:action', function(account_id, action, amount, reason)
+    local title, description = 'Banking', nil
+    local account = findAccount(account_id)
+
+    if not account then return end
+    if action == 'transferin' or action == 'deposit' then
+        description = ('Account %s received $%s.'):format(account.iban, amount)
+    end
+
+    if action == 'transferout' or action == 'withdraw' then
+        description = ('$%s was transfered from account %s.'):format(amount, account.iban)
+    end
+
+    if not title or not description then
+        return
+    end
+
+    exports["lb-phone"]:SendNotification({
+        app = "fd_banking",
+        title = title,
+        content = description,
     })
 end)

@@ -68,13 +68,13 @@ onMounted(() => {
         />
       </Transition>
       <div class="flex flex-col px-7 py-5">
-        <span class="font-bold text-gray-200 text-3xl">{{
+        <span class="font-bold text-gray-200 text-4xl">{{
           overallAccountsSum.toLocaleString(locale.get("currency_language"), {
             style: "currency",
             currency: locale.get("currency"),
           })
         }}</span>
-        <span class="text-gray-400">
+        <span class="text-gray-400 text-base">
           {{ locale.get("total_account_balance") }}
         </span>
       </div>
@@ -91,12 +91,12 @@ onMounted(() => {
             class="flex flex-col justify-between p-3 gap-10 bg-[#e5ede8] text-gray-900"
           >
             <div class="flex flex-col justify-between start">
-              <span class="block font-semibold truncate">{{
+              <span class="block font-semibold truncate text-lg">{{
                 account.type === "personal"
                   ? locale.get("personal_account_title")
                   : account.name ?? locale.get("unknown")
               }}</span>
-              <span class="block font-normal truncate">
+              <span class="block font-normal truncate text-base">
                 {{ locale.get("type") }}:
                 {{ locale.get(account.type) }}
                 <span class="text-red-400 ml-2">
@@ -105,7 +105,7 @@ onMounted(() => {
               </span>
             </div>
             <div class="flex justify-end items-center">
-              <div class="flex justify-end gap-1">
+              <div class="flex justify-end gap-1 text-lg">
                 <span>{{ locale.get("iban") }}:</span>
                 <span class="font-bold tracking-wide">{{ account.iban }}</span>
               </div>
@@ -114,8 +114,10 @@ onMounted(() => {
           <div
             class="flex justify-between items-center px-3 py-2 bg-[#85b899] text-gray-900"
           >
-            <div class="font-semibold">{{ locale.get("balance") }}</div>
-            <div class="font-bold">
+            <div class="text-lg">
+              {{ locale.get("balance") }}
+            </div>
+            <div class="font-semibold text-lg">
               {{
                 account.balance.toLocaleString(
                   locale.get("currency_language"),
