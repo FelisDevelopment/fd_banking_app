@@ -5,13 +5,12 @@ game 'gta5'
 
 description "Advanced Banking System - LB Phone integration"
 author "Felis Development"
-version      '1.0.7'
+version '1.0.5'
 repository 'https://github.com/felisDevelopment/fd_banking_app'
 
 dependencies {
     '/server:5104',
     '/onesync',
-    'lb-phone',
     'fd_banking',
 }
 
@@ -21,9 +20,11 @@ files {
     'web/public/**/*'
 }
 
-client_scripts "client.lua"
+client_scripts {
+    "integration/**/client.lua",
+    "client.lua"
+}
 
-shared_scripts {
-    "lb-phone.lua",
-    "yseries.lua"
+server_scripts {
+    "integration/**/server.lua",
 }

@@ -1,4 +1,5 @@
 if not GetResourceState("yseries"):find('start') then return end
+lib.checkDependency('yseries', '0.99.5', true)
 
 local function AddApp()
     local dataLoaded = exports.yseries:GetDataLoaded()
@@ -38,23 +39,11 @@ CreateThread(function()
     AddApp()
 end)
 
-if IsDuplicityVersion() then
-    RegisterNetEvent('fd_banking:server:notification', function(text, type)
-        local src = source
 
-        exports.yseries:SendNotification({
-            app = "fd_banking",
-            title = "Banking",
-            text = text,
-            icon = ("https://cfx-nui-%s/web/dist/bank_app.png"):format(GetCurrentResourceName())
-        }, 'source', src)
-    end)
-else
-    AddEventHandler("fd_banking:client:notification", function(text, type)
-        TriggerServerEvent("fd_banking:server:notification", text, type)
-    end)
+AddEventHandler("fd_banking:client:notification", function(text, type)
+    TriggerServerEvent("fd_banking:server:notification", text, type)
+end)
 
-    function SendData(data)
-        exports.yseries:SendAppMessage('fd_banking', data)
-    end
+function SendData(data)
+    exports.yseries:SendAppMessage('fd_banking', data)
 end
