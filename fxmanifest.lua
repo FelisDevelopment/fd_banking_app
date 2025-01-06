@@ -20,6 +20,8 @@ files {
     'web/public/**/*'
 }
 
+shared_script "@ox_lib/init.lua"
+
 client_scripts {
     "integration/**/client.lua",
     "client.lua"
@@ -27,4 +29,5 @@ client_scripts {
 
 server_scripts {
     "integration/**/server.lua",
+    "server.lua"
 }
