@@ -31,6 +31,7 @@ onMounted(() => {
     const { getSettings, onSettingsChange } = window as any;
 
     if (typeof getSettings === "undefined") return;
+    if (typeof onSettingsChange === "undefined") return;
 
     getSettings().then((settings: any) => {
       theme.value = settings.display.theme;
