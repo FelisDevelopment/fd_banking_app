@@ -1,34 +1,9 @@
 local userAccounts = {}
 
-CreateThread(function()
-    while GetResourceState("lb-phone") ~= "started" do
-        Wait(500)
-    end
-
-    while GetResourceState("fd_banking") ~= "started" do
-        Wait(500)
-    end
-
-    local added, errorMessage = exports["lb-phone"]:AddCustomApp({
-        identifier = "fd_banking",
-        name = "Bankas",
-        description = "El. Bankininkystė jūsų kišenėje",
-        developer = "Felis Development",
-        defaultApp = true,
-        size = 59812,
-        icon = "nui://" .. GetCurrentResourceName() .. "/web/dist/bank_app.png",
-        ui = GetCurrentResourceName() .. "/web/dist/index.html",
-    })
-
-    if not added then
-        print("Could not add app:", errorMessage)
-    end
-end)
-
 RegisterNetEvent('fd_banking:client:fetchAccounts', function(accounts)
     userAccounts = accounts
 
-    exports["lb-phone"]:SendCustomAppMessage("fd_banking", {
+    SendData({
         action = 'bank:setAccounts',
         data = {
             accounts = accounts
@@ -37,18 +12,11 @@ RegisterNetEvent('fd_banking:client:fetchAccounts', function(accounts)
 end)
 
 RegisterNetEvent("fd_banking:client:fetchAccount", function(account)
-    exports["lb-phone"]:SendCustomAppMessage("fd_banking", {
+    SendData({
         action = 'bank:setAccount',
         data = {
             account = account
         }
-    })
-end)
-
-RegisterNetEvent("lb-phone:settingsUpdated", function(settings)
-    SendNUIMessage({
-        type = "settingsUpdated",
-        settings = settings
     })
 end)
 
@@ -79,9 +47,5 @@ RegisterNetEvent('fd_advanced_banking:client:account:action', function(account_i
         return
     end
 
-    exports["lb-phone"]:SendNotification({
-        app = "fd_banking",
-        title = title,
-        content = description,
-    })
+    TriggerEvent("fd_banking:client:notification", description, "info")
 end)

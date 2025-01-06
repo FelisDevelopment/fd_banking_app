@@ -40,7 +40,7 @@
 
 html,
 body {
-  @apply w-full h-full m-0 p-0 invisible antialiased;
+  @apply w-full h-full m-0 p-0 antialiased;
 }
 
 #app {

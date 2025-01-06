@@ -20,10 +20,8 @@ const isDoingAction = ref<boolean>(false);
 const responseError = ref<string>("");
 
 const closeModal = () => {
-  if (!isDoingAction.value) {
-    emit("closeModal");
-    responseError.value = "";
-  }
+  emit("closeModal");
+  responseError.value = "";
 };
 
 const AccountNumberSchema = zod.object({
@@ -143,13 +141,16 @@ const transferHandle = handleSubmit(async (values) => {
       isDoingAction.value = false;
       if (!data) {
         responseError.value = locale.get("transfer_failed_please_try_again");
-        return;
+
+        return closeModal();
       }
 
       closeModal();
     } catch (e) {
       responseError.value = locale.get("transfer_failed_please_try_again");
       isDoingAction.value = false;
+
+      closeModal();
     }
   }
 });
